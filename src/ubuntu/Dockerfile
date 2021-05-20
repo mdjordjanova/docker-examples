@@ -1,9 +1,11 @@
 FROM ubuntu
 
+COPY README.md /
+COPY script.sh /
+
 RUN apt-get update \
   && apt-get install --yes --no-install-recommends \
-  iputils-ping
+  iputils-ping \
+  && mkdir /var/log/ping-log
 
-COPY README.md /
-
-CMD ["ping", "www.google.com"]  
+CMD ["/script.sh"]  
